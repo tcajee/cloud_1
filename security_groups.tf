@@ -1,14 +1,13 @@
 # Private Bastion SG
-
 resource "aws_security_group" "bastion" {
-  name        = "bation"
-  description = "Public Bation"
+  name        = "bastion"
+  description = "Public Bastion"
   vpc_id      = aws_vpc.main.id
 
   tags = merge(
     {
-      resouce_type = "security"
-      Name         = "bastion"
+      resource_type = "security"
+      Name          = "bastion"
     },
     local.common_tags
   )
@@ -24,7 +23,6 @@ resource "aws_security_group_rule" "bastion_ingress_ssh" {
 }
 
 # Private Load Balancer SG
-
 resource "aws_security_group" "load_balancer" {
   name        = "load_balancer"
   description = "Public Load Balancer"
@@ -32,8 +30,8 @@ resource "aws_security_group" "load_balancer" {
 
   tags = merge(
     {
-      resouce_type = "security"
-      Name         = "load_balancer"
+      resource_type = "security"
+      Name          = "load_balancer"
     },
     local.common_tags
   )
@@ -62,7 +60,6 @@ resource "aws_security_group_rule" "load_balancer_ingress_https" {
 }
 
 # Private Web SG
-
 resource "aws_security_group" "web" {
   name        = "web"
   description = "Private Web"
@@ -70,8 +67,8 @@ resource "aws_security_group" "web" {
 
   tags = merge(
     {
-      resouce_type = "security"
-      Name         = "web"
+      resource_type = "security"
+      Name          = "web"
     },
     local.common_tags
   )
@@ -105,7 +102,6 @@ resource "aws_security_group_rule" "web_ingress_https" {
 }
 
 # Private Database SG
-
 resource "aws_security_group" "database" {
   name        = "database"
   description = "Private Database"
@@ -113,8 +109,8 @@ resource "aws_security_group" "database" {
 
   tags = merge(
     {
-      resouce_type = "security"
-      Name         = "database"
+      resource_type = "security"
+      Name          = "database"
     },
     local.common_tags
   )

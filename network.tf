@@ -6,8 +6,8 @@ resource "aws_vpc" "main" {
 
   tags = merge(
     {
-      resouce_type = "network"
-      Name         = local.vpcs.main.name
+      resource_type = "network"
+      Name          = local.vpcs.main.name
     },
     local.common_tags
   )
@@ -21,8 +21,8 @@ resource "aws_subnet" "public" {
 
   tags = merge(
     {
-      resouce_type = "network"
-      Name         = local.subnets.main.public.name
+      resource_type = "network"
+      Name          = local.subnets.main.public.name
     },
     local.common_tags
   )
@@ -36,8 +36,8 @@ resource "aws_subnet" "web" {
 
   tags = merge(
     {
-      resouce_type = "network"
-      Name         = local.subnets.main.web.name
+      resource_type = "network"
+      Name          = local.subnets.main.web.name
     },
     local.common_tags
   )
@@ -51,8 +51,8 @@ resource "aws_subnet" "database" {
 
   tags = merge(
     {
-      resouce_type = "network"
-      Name         = local.subnets.main.database.name
+      resource_type = "network"
+      Name          = local.subnets.main.database.name
     },
     local.common_tags
   )

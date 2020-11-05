@@ -9,8 +9,8 @@ pip3 install awscli
 ## Confugure AWS CLI
 
 First set up an IAM user within the AWS Console and create an `"access key"` for cli access to AWS which you will need for the following command.
-Also note your desired default region (probably `af-south-1`) and the output format `json`. I would also advise adding 2FA to the IAM using using the console
-to ensure your account is kept secure.
+Also note your desired default region and the output format `json`.
+I would also advise adding 2FA to the IAM using using the console to ensure your account is kept secure.
 
 You should also update `remote-state/vars.tf` and `vars.tf` with the region which you have selected in the previous step.
 

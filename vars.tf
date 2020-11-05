@@ -1,25 +1,23 @@
 # Used to set default region for all resouces
 variable "region" {
   type    = string
-  default = "eu-west-2"
-  # default = "af-south-1"
+  default = "us-east-1"
 }
 
-# Used for resouce naming
+# Used for resource naming
 variable "project_name" {
   type    = string
-  default = "cloud1"
+  default = "cloud"
 }
 
-# Required for S3 bucket for TF state file as S3 bucket names must universally unique
-# only lowercase alphanumeric characters and hyphens allowed
+# Required for S3 bucket for TF state file as S3 bucket names must universally unique.
 variable "rand" {
   type    = string
-  default = "838qrrdmy0"
+  default = "afo8957uy"
 }
 
-# Required 
+# Required for IAM with MFA
 variable "profile" {
   type    = string
-  default = "2auth"
+  default = "mfa"
 }

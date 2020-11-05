@@ -1,7 +1,6 @@
 locals {
   anywhere_cidr = "0.0.0.0/0"
-
-  private_cidr = "10.0.0.0/8"
+  private_cidr  = "10.0.0.0/8"
 
   vpcs = {
     main = {
@@ -29,8 +28,6 @@ locals {
 
   # Allowed IP Addresses for connecting to bastion host
   allowed_remote_ssh_ip_list = [
-    "123.123.123.123/32",
-    "123.123.123.124/32",
-    "123.123.123.125/32",
+    "123.123.123.123/12",
   ]
 }

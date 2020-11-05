@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "tf_state" {
 
   tags = merge(
     {
-      resouce_type = "terraform_infra"
+      resource_type = "terraform_infra"
     },
     local.common_tags
   )
