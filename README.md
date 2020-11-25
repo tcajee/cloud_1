@@ -1,78 +1,48 @@
-# AWS CLI
+# Cloud_1
 
-## Install AWS CLI:
+This repository contains a Terraform configuration to deploy the neceassary cloud infrastrucutre required for the DevOps module at WeThinkCode.
 
-```
-pip3 install awscli
-```
+## Pre-requisites
+- Install [`terraform`](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- Install [`gcloud SDK`](https://cloud.google.com/sdk/docs/install)
+- Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-## Confugure AWS CLI
 
-First set up an IAM user within the AWS Console and create an `"access key"` for cli access to AWS which you will need for the following command.
-Also note your desired default region and the output format `json`.
-I would also advise adding 2FA to the IAM using using the console to ensure your account is kept secure.
+## Configuration
 
-You should also update `remote-state/vars.tf` and `vars.tf` with the region which you have selected in the previous step.
+- Replace the terraform-gcp-credentials.json file with your service account key file
+- Update the project ID in vars.tf
 
-```
-aws configure
-```
+## Terraform
+To Initiate Terraform WorkSpace       :- terraform init
+To create infrastructure, run command :- terraform apply -auto-approve
+To delete infrastructure, run command :- terraform destroy -auto-approve
 
-## 2FA
 
-If you are using 2FA on your IAM User (recommended) there is a helper script `aws_2fa.sh` which can be used to fetch temporary access tokens and creates a profile called `2auth` which can then be used Terraform.
+### Troubleshooting
+#### Kubectl
+Verifying kubectl configuration
+In order for kubectl to find and access a Kubernetes cluster, it needs a kubeconfig file, which is created automatically when you create a cluster using kube-up.sh or successfully deploy a Minikube cluster. By default, kubectl configuration is located at ~/.kube/config.
 
-This script requires that the following environment variables are defined, this can be done either using a .envrc file or by setting them manually.
+Check that kubectl is properly configured by getting the cluster state:
 
-```
-ARN='<MFA_ARN>'
-AWS_USER_PROFILE='default'
-AWS_PROFILE='2auth'
-```
+kubectl cluster-info
 
-```
-./aws_2fa.sh <2FA_CODE>
-```
+If you see a URL response, kubectl is correctly configured to access your cluster.
 
-If you're not using 2FA then update the `profile` variable value in `vars.tf` and `remote-state/vars.tf` and set it to `default`
+If you see a message similar to the following, kubectl is not configured correctly or is not able to connect to a Kubernetes cluster.
 
-## Install Terraform:
+The connection to the server <server-name:port> was refused - did you specify the right host or port?
 
-(OSX with HomeBrew)
+For example, if you are intending to run a Kubernetes cluster on your laptop (locally), you will need a tool like Minikube to be installed first and then re-run the commands stated above.
 
-```
-brew install terraform
-```
+If kubectl cluster-info returns the url response but you can't access your cluster, to check whether it is configured properly, use:
 
-(OSX manual)
+kubectl cluster-info dump
 
-```
-wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_darwin_amd64.zip
-unzip terraform_0.13.4_darwin_amd64.zip
-rm terraform_0.13.4_darwin_amd64.zip
-sudo mv terraform /usr/local/bin/terraform
-```
 
-(Ubuntu)
+### Notes
 
-```
-curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-sudo apt-get update && sudo apt-get install terraform
-```
+<!-- run gcloud auth login -->
+<!-- Error: Error, failed to create instance MySQL: googleapi: Error 403: Cloud SQL Admin API has not been used in project 467029758961 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/sqladmin.googleapis.com/overview?project=467029758961 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., accessNotConfigured -->
 
-## Initialise and Create Terraform Remote State:
-
-Within `remote-state`there is a Terraform definition for an S3 Bucket and a DynamoDB table which are used for Terraform
-state storage and stack locking. These must be defined within another directory as a remote backend cannot refer to a S3
-Bucket which does not already exist so it's simpler to keep it seperate.
-
-You should ensure that the resouce names within `remote-state/bucket.tf` and `remote-state/dynamodb.tf`, which are
-defined using variables defined in `remote-state/vars.tf`, match the values within `backend.tf`. The `rand` value is 
-used to ensure the S3 Bucket name is not aleady taken as S3 Bucket names must be unique.
-
-```
-cd remote-state
-terraform init
-terraform apply
-```
