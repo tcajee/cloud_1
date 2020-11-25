@@ -14,9 +14,9 @@ This repository contains a Terraform configuration to deploy the neceassary clou
 - Update the project ID in vars.tf
 
 ## Terraform
-To Initiate Terraform WorkSpace       :- terraform init
-To create infrastructure, run command :- terraform apply -auto-approve
-To delete infrastructure, run command :- terraform destroy -auto-approve
+-To Initiate Terraform WorkSpace: `terraform init`
+-To create infrastructure: `terraform apply -auto-approve`
+-To delete infrastructure: `terraform destroy -auto-approve`
 
 
 ### Troubleshooting
@@ -43,6 +43,6 @@ kubectl cluster-info dump
 
 ### Notes
 
-<!-- run gcloud auth login -->
-<!-- Error: Error, failed to create instance MySQL: googleapi: Error 403: Cloud SQL Admin API has not been used in project 467029758961 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/sqladmin.googleapis.com/overview?project=467029758961 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry., accessNotConfigured -->
+run gcloud auth login
+Cloud SQL Admin API has not been used in project `xxx`before or it is disabled. Enable it by visiting: https://console.developers.google.com/apis/api/sqladmin.googleapis.com/ then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
 
