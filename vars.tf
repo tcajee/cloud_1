@@ -4,7 +4,7 @@ variable "project_id" {
   default = "cloud-1-296510"
 }
 
-// Region 1 
+// Region 1
 variable "region1" {
   type        = string
   description = "Region 1"
@@ -16,4 +16,29 @@ variable "region2" {
   type        = string
   description = "Region 2"
   default     = "asia-south1" // <-- Change this
+}
+
+
+// SQL Database Root Password
+variable "root_pass" {
+  type        = string
+  description = "Root Password For SQL Database"
+}
+
+// SQL Database Name
+variable "database" {
+  type        = string
+  description = "SQL Database Name"
+}
+
+// SQL Database Username
+variable "db_user" {
+  type        = string
+  description = "SQL Database Username"
+}
+
+// SQL Database Password
+variable "db_user_pass" {
+  type        = string
+  description = "Password for SQL Database"
 }
