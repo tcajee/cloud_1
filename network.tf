@@ -9,7 +9,7 @@ resource "google_compute_network" "wp_vpc" {
 // Create WordPress Subnet
 resource "google_compute_subnetwork" "wp_subnet" {
   name          = "wp-subnet"
-  ip_cidr_range = "10.2.0.0/16" // <--------------------------------- Check this
+  ip_cidr_range = local.subnets.main.public.cidr
   project       = var.project_id
   region        = var.region1
   network       = google_compute_network.wp_vpc.id
@@ -30,7 +30,7 @@ resource "google_compute_network" "db_vpc" {
 // Creating Database Subnet
 resource "google_compute_subnetwork" "db_subnet" {
   name          = "db-subnet"
-  ip_cidr_range = "10.4.0.0/16" // <------------------------------------- Check this
+  ip_cidr_range = local.subnets.main.database.cidr 
   project       = var.project_id
   region        = var.region2
   network       = google_compute_network.db_vpc.id

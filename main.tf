@@ -46,11 +46,11 @@ resource "kubernetes_deployment" "wp_dep" {
       spec {
         container {
           image = "wordpress"
-          name  = "wp_container"
+          name  = "wp-container"
 
           env {
             name  = "WORDPRESS_DB_HOST"
-            value = google_sql_database_instance.mysql.ip_address.0.ip_address
+            value = google_sql_database_instance.mysql_instance.ip_address.0.ip_address
           }
           env {
             name  = "WORDPRESS_DB_USER"
@@ -62,7 +62,7 @@ resource "kubernetes_deployment" "wp_dep" {
           }
           env {
             name  = "WORDPRESS_DB_NAME"
-            value = var.database
+            value = var.db_name
           }
           env {
             name  = "WORDPRESS_TABLE_PREFIX"

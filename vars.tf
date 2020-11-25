@@ -1,3 +1,9 @@
+// Project Name
+variable "project_name" {
+  type    = string
+  default = "cloud-1"
+}
+
 // Project ID
 variable "project_id" {
   type    = string
@@ -7,28 +13,27 @@ variable "project_id" {
 // Region 1
 variable "region1" {
   type        = string
-  description = "Region 1"
-  default     = "europe-west2" // <-- Change this
+  description = "US East Region"
+  default     = "us-east1" 
 }
 
 // Region 2
 variable "region2" {
   type        = string
-  description = "Region 2"
-  default     = "asia-south1" // <-- Change this
-}
-
-
-// SQL Database Root Password
-variable "root_pass" {
-  type        = string
-  description = "Root Password For SQL Database"
+  description = "US West Region"
+  default     = "us-west1"
 }
 
 // SQL Database Name
-variable "database" {
+variable "db_name" {
   type        = string
   description = "SQL Database Name"
+}
+
+// SQL Database Root Password
+variable "db_root_pass" {
+  type        = string
+  description = "Root Password For SQL Database"
 }
 
 // SQL Database Username
