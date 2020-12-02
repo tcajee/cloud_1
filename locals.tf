@@ -15,4 +15,3 @@
      cost_centre  = "cld1cc"
    }
   }
-}
