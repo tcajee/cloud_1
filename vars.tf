@@ -24,26 +24,26 @@ variable "region2" {
   default     = "us-west1"
 }
 
-// SQL Database Name
-variable "db_name" {
-  type        = string
-  description = "SQL Database Name"
-}
+# // SQL Database Name
+# variable "db_name" {
+#   type        = string
+#   description = "SQL Database Name"
+# }
 
-// SQL Database Root Password
-variable "db_root_pass" {
-  type        = string
-  description = "Root Password For SQL Database"
-}
+# // SQL Database Root Password
+# variable "db_root_pass" {
+#   type        = string
+#   description = "Root Password For SQL Database"
+# }
 
-// SQL Database Username
-variable "db_user" {
-  type        = string
-  description = "SQL Database Username"
-}
+# // SQL Database Username
+# variable "db_user" {
+#   type        = string
+#   description = "SQL Database Username"
+# }
 
-// SQL Database Password
-variable "db_user_pass" {
-  type        = string
-  description = "Password for SQL Database"
-}
+# // SQL Database Password
+# variable "db_user_pass" {
+#   type        = string
+#   description = "Password for SQL Database"
+# }
