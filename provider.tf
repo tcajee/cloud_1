@@ -5,7 +5,7 @@ provider "google" {
 }
 
 // Kubernetes Provider
-provider "kubernetes" { // Configure k8?}
+provider "kubernetes" {} // <----- Configure k8?
 
 // helm
 // helm pull chartrepo/chartname (for values.yml from bitnami/wordpress)

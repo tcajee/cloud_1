@@ -1,24 +1,22 @@
 # Cloud_1
-
 This repository contains a Terraform configuration to deploy the neceassary cloud infrastrucutre required for the DevOps module at WeThinkCode.
 
 ## Pre-requisites
-
 - Install [`terraform`](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-- Install [`gcloud SDK`](https://cloud.google.com/sdk/docs/install)
+- Install [`gcloud`](https://cloud.google.com/sdk/docs/install)
 - Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - Install [`helm`](https://helm.sh/)
 
-
 ## Configuration
-
-- Replace the terraform-gcp-credentials.json file with your service account key file
-- Update the project ID in vars.tf
+- Obtain the terraform-gcp-credentials.json file containing the required service account credentials for the project.
 
 ## Terraform
--To Initiate Terraform workSpace: `terraform init`
+-To initialise Terraform workSpace: `terraform init`
 -To create infrastructure: `terraform apply`
 -To delete infrastructure: `terraform destroy`
+
+### Helm
+Helm is a package maneger for Kubernetes that we use to install WordPress on our Kubernetes cluster using. It also configures the load balancer and auto-scaler that will be used in the project.
 
 
 ## Troubleshooting
@@ -45,9 +43,11 @@ If kubectl cluster-info returns the url response but you can't access your clust
 kubectl cluster-info dump
 ```
 
-### Helm
-Helm is a package maneger for Kubernetes that we use to install WordPress on our Kubernetes cluster. It also configures the load balancer and auto-scaler that will be used in the project.
-
 ### Notes
-run gcloud auth login
+
+Gcloud setup:
+```bash
+gcloud init
+gcloud auth login
+```
 
