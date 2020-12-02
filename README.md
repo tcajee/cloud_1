@@ -6,6 +6,7 @@ This repository contains a Terraform configuration to deploy the neceassary clou
 - Install [`terraform`](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - Install [`gcloud SDK`](https://cloud.google.com/sdk/docs/install)
 - Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- Install [`Helm`](https://helm.sh/)
 
 
 ## Configuration
@@ -40,6 +41,8 @@ If kubectl cluster-info returns the url response but you can't access your clust
 
 kubectl cluster-info dump
 
+#### Helm
+Helm is a package maneger for kubernetes that we use to install Wordpress on our kubernetes kluster. It also configures the load-balencer and auto-scaler that will be used in the project.
 
 ### Notes
 
