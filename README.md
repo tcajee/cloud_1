@@ -7,7 +7,7 @@ This repository contains a Terraform configuration to deploy the neceassary clou
 - Install [`terraform`](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - Install [`gcloud SDK`](https://cloud.google.com/sdk/docs/install)
 - Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
-- Install [`Helm`](https://helm.sh/)
+- Install [`helm`](https://helm.sh/)
 
 
 ## Configuration
@@ -17,18 +17,22 @@ This repository contains a Terraform configuration to deploy the neceassary clou
 
 ## Terraform
 -To Initiate Terraform workSpace: `terraform init`
--To create infrastructure: `terraform apply -auto-approve`
--To delete infrastructure: `terraform destroy -auto-approve`
+-To create infrastructure: `terraform apply`
+-To delete infrastructure: `terraform destroy`
 
 
-### Troubleshooting
-#### Kubectl
-Verifying kubectl configuration
-In order for kubectl to find and access a Kubernetes cluster, it needs a kubeconfig file, which is created automatically when you create a cluster using kube-up.sh or successfully deploy a Minikube cluster. By default, kubectl configuration is located at ~/.kube/config.
+## Troubleshooting
 
-Check that kubectl is properly configured by getting the cluster state:
+### Verifying kubectl configuration
 
+In order for kubectl to find and access a Kubernetes cluster, it needs a kubeconfig file, which is created automatically when you create a cluster using kube-up.sh or successfully deploy a Minikube cluster.
+
+By default, kubectl configuration is located at ~/.kube/config.
+
+-Check that kubectl is properly configured by getting the cluster state:
+```bash
 kubectl cluster-info
+```
 
 If you see a URL response, kubectl is correctly configured to access your cluster.
 
@@ -36,16 +40,14 @@ If you see a message similar to the following, kubectl is not configured correct
 
 The connection to the server <server-name:port> was refused - did you specify the right host or port?
 
-For example, if you are intending to run a Kubernetes cluster on your laptop (locally), you will need a tool like Minikube to be installed first and then re-run the commands stated above.
-
 If kubectl cluster-info returns the url response but you can't access your cluster, to check whether it is configured properly, use:
-
+```bash
 kubectl cluster-info dump
+```
 
-#### Helm
-Helm is a package maneger for kubernetes that we use to install Wordpress on our kubernetes kluster. It also configures the load-balencer and auto-scaler that will be used in the project.
+### Helm
+Helm is a package maneger for Kubernetes that we use to install WordPress on our Kubernetes cluster. It also configures the load balancer and auto-scaler that will be used in the project.
 
 ### Notes
-
 run gcloud auth login
 
