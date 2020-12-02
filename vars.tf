@@ -10,18 +10,11 @@ variable "project_id" {
   default = "cloud-1-296510"
 }
 
-// Region 1
-variable "region1" {
+// Region
+variable "region" {
   type        = string
   description = "US East Region"
   default     = "us-east1" 
-}
-
-// Region 2
-variable "region2" {
-  type        = string
-  description = "US West Region"
-  default     = "us-west1"
 }
 
 // SQL Database Name

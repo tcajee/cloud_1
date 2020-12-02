@@ -6,9 +6,6 @@
          name = "wp"
          cidr = "10.2.0.0/16"
        }
-       database = {
-         name = "database"
-         cidr = "10.4.0.0/16"
      }
    }
  

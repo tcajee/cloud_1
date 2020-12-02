@@ -3,9 +3,11 @@
 This repository contains a Terraform configuration to deploy the neceassary cloud infrastrucutre required for the DevOps module at WeThinkCode.
 
 ## Pre-requisites
+
 - Install [`terraform`](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - Install [`gcloud SDK`](https://cloud.google.com/sdk/docs/install)
 - Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- Install [`helm`](https://helm.sh/)
 
 
 ## Configuration
@@ -14,7 +16,7 @@ This repository contains a Terraform configuration to deploy the neceassary clou
 - Update the project ID in vars.tf
 
 ## Terraform
--To Initiate Terraform WorkSpace: `terraform init`
+-To Initiate Terraform workSpace: `terraform init`
 -To create infrastructure: `terraform apply -auto-approve`
 -To delete infrastructure: `terraform destroy -auto-approve`
 
@@ -44,5 +46,4 @@ kubectl cluster-info dump
 ### Notes
 
 run gcloud auth login
-Cloud SQL Admin API has not been used in project `xxx`before or it is disabled. Enable it by visiting: https://console.developers.google.com/apis/api/sqladmin.googleapis.com/ then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
 
