@@ -18,7 +18,6 @@ This repository contains a Terraform configuration to deploy the neceassary clou
 ### Helm
 Helm is a package maneger for Kubernetes that we use to install WordPress on our Kubernetes cluster using. It also configures the load balancer and auto-scaler that will be used in the project.
 
-
 ## Troubleshooting
 
 ### Verifying kubectl configuration
