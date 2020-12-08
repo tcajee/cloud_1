@@ -9,14 +9,11 @@ This repo has the following folder structure:
 
   The primary module is:
 
-  - [gke-cluster](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules/gke-cluster): The GKE Cluster module is used to
-    administer the [cluster master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture)
-    for a [GKE Cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-admin-overview).
+  - [gke-cluster](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules/gke-cluster): The GKE Cluster module is used to administer the [cluster master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture) for a [GKE Cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-admin-overview). 
 
   There are also several supporting modules that add extra functionality on top of `gke-cluster`:
 
-  - [gke-service-account](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules/gke-service-account):
-    Used to configure a GCP service account for use with a GKE cluster.
+  - [gke-service-account](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules/gke-service-account): Used to configure a GCP service account for use with a GKE cluster.
 
 ## Getting started 
 
@@ -40,10 +37,7 @@ client utilities on the system `PATH`. Here are the installation guides for each
 1. [`helm`](https://docs.helm.sh/using_helm/#installing-helm) (Minimum version v3.0)
 
 Make sure the binaries are discoverable in your `PATH` variable. See [this Stack Overflow
-post](https://stackoverflow.com/questions/14637979/how-to-permanently-set-path-on-linux-unix) for instructions on
-setting up your `PATH` on Unix, and [this
-post](https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows) for instructions on
-Windows.
+post](https://stackoverflow.com/questions/14637979/how-to-permanently-set-path-on-linux-unix) for instructions on setting up your `PATH` on Unix, and [this post](https://stackoverflow.com/questions/1618280/where-can-i-set-path-to-make-exe-on-windows) for instructions on Windows.
 
 ## Apply the Terraform Code
 
