@@ -222,6 +222,7 @@ module "vpc_network" {
 
 # configure kubectl with the credentials of the GKE cluster
 resource "null_resource" "configure_kubectl" {
+  # Configure Kubectl with GCP K8s Cluster
   provisioner "local-exec" {
     command = "gcloud beta container clusters get-credentials ${module.gke_cluster.name} --region ${var.region} --project ${var.project}"
 
