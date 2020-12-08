@@ -5,9 +5,6 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 terraform {
-  # This module is now only being tested with Terraform 0.13.x. However, to make upgrading easier, we are setting
-  # 0.12.26 as the minimum version, as that version added support for required_providers with source URLs, making it
-  # forwards compatible with 0.13.x code.
   required_version = ">= 0.12.26"
 }
 
@@ -81,9 +78,6 @@ provider "helm" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "gke_cluster" {
-  # When using these modules in your own templates, you will need to use a Git URL with a ref attribute that pins you
-  # to a specific version of the modules, such as the following example:
-  # source = "github.com/gruntwork-io/terraform-google-gke.git//modules/gke-cluster?ref=v0.2.0"
   source = "./modules/gke-cluster"
 
   name = var.cluster_name
@@ -99,7 +93,7 @@ module "gke_cluster" {
   cluster_secondary_range_name = module.vpc_network.public_subnetwork_secondary_range_name
 
   # To make testing easier, we keep the public endpoint available. In production, we highly recommend restricting access to only within the network boundary, requiring your users to use a bastion host or VPN.
-  disable_public_endpoint = "false"
+  disable_public_endpoint = "false" #<--------------- CHECK
 
   # add resource labels to the cluster
   resource_labels = {
@@ -122,8 +116,8 @@ resource "google_container_node_pool" "node_pool" {
   initial_node_count = "1"
 
   autoscaling {
-    min_node_count = "1"
-    max_node_count = "5"
+    min_node_count = "2"
+    max_node_count = "6"
   }
 
   management {
@@ -133,8 +127,8 @@ resource "google_container_node_pool" "node_pool" {
 
   node_config {
     image_type   = "COS"
-    # machine_type = "n1-standard-1"
     machine_type = "e2-micro"
+    # machine_type = "n1-standard-1"
 
     labels = {
       all-pools-cloud1 = "true"
@@ -174,13 +168,10 @@ resource "google_container_node_pool" "node_pool" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 module "gke_service_account" {
-  # When using these modules in your own templates, you will need to use a Git URL with a ref attribute that pins you
-  # to a specific version of the modules, such as the following example:
-  # source = "github.com/gruntwork-io/terraform-google-gke.git//modules/gke-service-account?ref=v0.2.0"
   source = "./modules/gke-service-account"
 
-  name        = var.cluster_service_account_name
   project     = var.project
+  name        = var.cluster_service_account_name
   description = var.cluster_service_account_description
 }
 
@@ -251,7 +242,7 @@ resource "kubernetes_cluster_role_binding" "user" {
 # ---------------------------------------------------------------------------------------------------------------------
 # DEPLOY A SAMPLE CHART
 # A chart repository is a location where packaged charts can be stored and shared. Define Bitnami Helm repository location,
-# so Helm can install the nginx chart.
+# so Helm can install the wordpress chart.
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "helm_release" "wordpress" {
