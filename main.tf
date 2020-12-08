@@ -145,10 +145,11 @@ resource "google_container_node_pool" "node_pool" {
 
   node_config {
     image_type   = "COS"
-    machine_type = "n1-standard-1"
+    # machine_type = "n1-standard-1"
+    machine_type = "e2-micro"
 
     labels = {
-      all-pools-example = "true"
+      all-pools-cloud1 = "true"
     }
 
     # Add a public tag to the instances. See the network access tier table for full details:
