@@ -19,7 +19,7 @@ provider "google" {
   version = "~> 3.43.0"
   project = var.project
   region  = var.region
-  credentials = file("./terraform-gcp-credentials.json")
+  # credentials = file("./terraform-gcp-credentials.json")
 
   scopes = [
     # Default scopes
