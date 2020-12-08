@@ -1,8 +1,24 @@
-# Cloud_1
+# DevOps - Cloud_1
 
-This repository contains a Terraform configuration to deploy the neceassary cloud infrastrucutre required for the DevOps module at WeThinkCode. The configuration files in the root folder deploy a GKE Public Cluster and a WordPress chart using [Helm](https://helm.sh/).
+This repo has the following folder structure:
 
-## Overview
+- root: The root folder contains a [Terraform](https://www.terraform.io) module for running a Kubernetes cluster on [Google Cloud Platform (GCP)](https://cloud.google.com/) using [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/), and deploying a [WordPress chart](https://artifacthub.io/packages/helm/bitnami/wordpress) using [Helm](https://helm.sh/).
+
+- [modules](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules): This folder contains the
+  main implementation code for this Module, broken down into multiple standalone submodules. These Modules and their Submodules are maintained by [Gruntwork](http://www.gruntwork.io/).
+
+  The primary module is:
+
+  - [gke-cluster](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules/gke-cluster): The GKE Cluster module is used to
+    administer the [cluster master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture)
+    for a [GKE Cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-admin-overview).
+
+  There are also several supporting modules that add extra functionality on top of `gke-cluster`:
+
+  - [gke-service-account](https://github.com/gruntwork-io/terraform-google-gke/tree/master/modules/gke-service-account):
+    Used to configure a GCP service account for use with a GKE cluster.
+
+## Getting started 
 
 Follow these step to get up and running with GKE and Helm:
 
@@ -31,10 +47,8 @@ Windows.
 
 ## Apply the Terraform Code
 
-Once all the prerequisite tools are installed, you may proceed to deploy the GKE cluster using these steps:
+Once all the prerequisite tools are installed, navigate to the root of the repository and proceed to deploy the GKE cluster using these steps:
 
-1. Make sure you are in the root of the repository.
-1. Fill in the required variables in `variables.tf`.
 1. Authenticate to GCP:
    - `gcloud auth login`
    - `gcloud auth application-default login`
@@ -45,23 +59,20 @@ Once all the prerequisite tools are installed, you may proceed to deploy the GKE
 1. Apply the terraform code:
    - `terraform apply`
 
-
 ## Verify the Deployed Chart
 
 At the end of the `terraform apply`, you should now have a working GKE cluster and `kubectl` context configured.
 The deployment configures your `kubectl` context, so you can use `kubectl` and `helm` commands without further configuration.
 
 To see the created resources, run the following commands:
-
-```bash
+```
 ❯ kubectl get deployments -n default
 ❯ kubectl get service -n default
 ❯ kubectl get pods -n default
 ```
 
 If you wish to access the deployed service, you use the `kubectl port-forward` command to forward a local port to the deployed service:
-
-```bash
+```
 ❯ kubectl port-forward deployment/wordpress 8080:8080 -n default
 ```
 

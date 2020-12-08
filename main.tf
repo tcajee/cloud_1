@@ -19,7 +19,6 @@ provider "google" {
   version = "~> 3.43.0"
   project = var.project
   region  = var.region
-  # credentials = file("./terraform-gcp-credentials.json")
 
   scopes = [
     # Default scopes
@@ -52,17 +51,6 @@ provider "google-beta" {
 
 # We use this data provider to expose an access token for communicating with the GKE cluster.
 data "google_client_config" "client" {}
-
-
-# Error: Attempted to load application default credentials since neither `credentials` nor `access_token` was set in the provider block.  No credentials loaded. To use your gcloud credentials, run 'gcloud auth application-default login'.  Original error: google: could not find default credentials. See https://developers.google.com/accounts/docs/application-default-credentials for more information.
-
-resource "null_resource" "set_gcloud_project" {
-  # Set Current Project in gcloud SDK
-  provisioner "local-exec" {
-    command = "gcloud config set project ${var.project}"
-  }
-}
-
 
 # Use this datasource to access the Terraform account's email for Kubernetes permissions.
 data "google_client_openid_userinfo" "terraform_user" {}
@@ -233,10 +221,7 @@ resource "null_resource" "configure_kubectl" {
     }
   }
 
-  depends_on = [ 
-    null_resource.set_gcloud_project,
-    google_container_node_pool.node_pool
-  ]
+  depends_on = [google_container_node_pool.node_pool]
 }
 
 resource "kubernetes_cluster_role_binding" "user" {
